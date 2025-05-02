@@ -1,6 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartData } from '../../../cartcontext'
 
-export const Detail = () => {
+export const Detail = ({CartData,SetCart})=> {
+ 
+const Cart = useContext(CartData);
+    
+    
+      const AddtoCart = () => {
+        let productDetails = {
+          id: 1,
+          name: "Apple MacBook Pro",
+          price: 1999.99,
+          description: "14-inch laptop with Apple M2 chip, Retina display, and all-day battery life.",
+          image: "https://img.freepik.com/free-photo/laptop-with-white-screen-isolated-white-wall_231208-8594.jpg?t=st=1745005696~exp=1745009296~hmac=9870338dd100d4da1cac7f1ab8c6ddf783158f1400ca16cd9db489ade69d6afa&w=1380"
+    
+        }
+        SetCart([...CartData,productDetails]);
+        console.log(CartData)
+      }
+  
     const products = [
         {
           name: "Apple MacBook Pro",
@@ -211,7 +229,7 @@ export const Detail = () => {
                 <div className="card-body text-start ">
                   <div className="d-flex justify-content-between">
                     <h5 className="me-4" style={{ fontSize: '20px', fontWeight: 'bold' }}>{list.name}</h5>
-                    <a href="/Details">  <i className='fa-solid fa-cart-shopping' style={{ fontSize: '20px' ,color:'black'}}></i></a>
+                    <a onClick={()=>AddtoCart()}>  <i className='fa-solid fa-cart-shopping' style={{ fontSize: '20px' ,color:'black'}}></i></a>
               </div>
 
                   <p className=" text-start card-text " style={{ color: 'red', fontSize: '15px', fontWeight: 'bold' }}>Price :  ${list.price}</p>
